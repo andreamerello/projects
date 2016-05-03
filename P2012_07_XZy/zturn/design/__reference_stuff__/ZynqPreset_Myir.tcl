@@ -1,5 +1,5 @@
 proc getPresetInfo {} {
-  return [dict create name {CER} description {CER}  vlnv xilinx.com:ip:processing_system7:5.5 display_name {CER} ]
+  return [dict create name {Zturn} description {Zturn}  vlnv xilinx.com:ip:processing_system7:5.5 display_name {Zturn} ]
 }
 
 proc validate_preset {IPINST} { return true }
@@ -152,7 +152,7 @@ return [dict create \
     CONFIG.PCW_ACT_SDIO_PERIPHERAL_FREQMHZ {125.000000}  \
     CONFIG.PCW_ACT_UART_PERIPHERAL_FREQMHZ {100.000000}  \
     CONFIG.PCW_ACT_SPI_PERIPHERAL_FREQMHZ {10.000000}  \
-    CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ {10.000000}  \
+    CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ {100.000000}  \
     CONFIG.PCW_ACT_CAN0_PERIPHERAL_FREQMHZ {23.8095}  \
     CONFIG.PCW_ACT_CAN1_PERIPHERAL_FREQMHZ {23.8095}  \
     CONFIG.PCW_ACT_I2C_PERIPHERAL_FREQMHZ {50}  \
@@ -182,7 +182,7 @@ return [dict create \
     CONFIG.PCW_SDIO_PERIPHERAL_DIVISOR0 {8}  \
     CONFIG.PCW_UART_PERIPHERAL_DIVISOR0 {10}  \
     CONFIG.PCW_SPI_PERIPHERAL_DIVISOR0 {1}  \
-    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0 {1}  \
+    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0 {10}  \
     CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1}  \
     CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {10}  \
     CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {20}  \
@@ -216,19 +216,21 @@ return [dict create \
     CONFIG.PCW_SMC_PERIPHERAL_VALID {0}  \
     CONFIG.PCW_SDIO_PERIPHERAL_VALID {1}  \
     CONFIG.PCW_SPI_PERIPHERAL_VALID {0}  \
-    CONFIG.PCW_CAN_PERIPHERAL_VALID {0}  \
+    CONFIG.PCW_CAN_PERIPHERAL_VALID {1}  \
     CONFIG.PCW_UART_PERIPHERAL_VALID {1}  \
     CONFIG.PCW_EN_EMIO_CAN0 {0}  \
     CONFIG.PCW_EN_EMIO_CAN1 {0}  \
     CONFIG.PCW_EN_EMIO_ENET0 {0}  \
     CONFIG.PCW_EN_EMIO_ENET1 {0}  \
+    CONFIG.PCW_EN_PTP_ENET0 {0}  \
+    CONFIG.PCW_EN_PTP_ENET1 {0}  \
     CONFIG.PCW_EN_EMIO_GPIO {1}  \
     CONFIG.PCW_EN_EMIO_I2C0 {1}  \
     CONFIG.PCW_EN_EMIO_I2C1 {0}  \
     CONFIG.PCW_EN_EMIO_PJTAG {0}  \
     CONFIG.PCW_EN_EMIO_SDIO0 {0}  \
     CONFIG.PCW_EN_EMIO_CD_SDIO0 {0}  \
-    CONFIG.PCW_EN_EMIO_WP_SDIO0 {1}  \
+    CONFIG.PCW_EN_EMIO_WP_SDIO0 {0}  \
     CONFIG.PCW_EN_EMIO_SDIO1 {0}  \
     CONFIG.PCW_EN_EMIO_CD_SDIO1 {0}  \
     CONFIG.PCW_EN_EMIO_WP_SDIO1 {0}  \
@@ -248,7 +250,7 @@ return [dict create \
     CONFIG.PCW_USE_S_AXI_GP0 {0}  \
     CONFIG.PCW_USE_S_AXI_GP1 {0}  \
     CONFIG.PCW_USE_S_AXI_ACP {0}  \
-    CONFIG.PCW_USE_S_AXI_HP0 {1}  \
+    CONFIG.PCW_USE_S_AXI_HP0 {0}  \
     CONFIG.PCW_USE_S_AXI_HP1 {0}  \
     CONFIG.PCW_USE_S_AXI_HP2 {0}  \
     CONFIG.PCW_USE_S_AXI_HP3 {0}  \
@@ -322,7 +324,7 @@ return [dict create \
     CONFIG.PCW_EN_DDR {1}  \
     CONFIG.PCW_EN_SMC {0}  \
     CONFIG.PCW_EN_QSPI {0}  \
-    CONFIG.PCW_EN_CAN0 {0}  \
+    CONFIG.PCW_EN_CAN0 {1}  \
     CONFIG.PCW_EN_CAN1 {0}  \
     CONFIG.PCW_EN_ENET0 {1}  \
     CONFIG.PCW_EN_ENET1 {0}  \
@@ -478,7 +480,7 @@ return [dict create \
     CONFIG.PCW_SD0_GRP_CD_ENABLE {1}  \
     CONFIG.PCW_SD0_GRP_CD_IO {MIO 46}  \
     CONFIG.PCW_SD0_GRP_WP_ENABLE {1}  \
-    CONFIG.PCW_SD0_GRP_WP_IO {EMIO}  \
+    CONFIG.PCW_SD0_GRP_WP_IO {MIO 47}  \
     CONFIG.PCW_SD0_GRP_POW_ENABLE {0}  \
     CONFIG.PCW_SD0_GRP_POW_IO {<Select>}  \
     CONFIG.PCW_SD1_PERIPHERAL_ENABLE {0}  \
@@ -513,8 +515,8 @@ return [dict create \
     CONFIG.PCW_SPI1_GRP_SS1_IO {<Select>}  \
     CONFIG.PCW_SPI1_GRP_SS2_ENABLE {0}  \
     CONFIG.PCW_SPI1_GRP_SS2_IO {<Select>}  \
-    CONFIG.PCW_CAN0_PERIPHERAL_ENABLE {0}  \
-    CONFIG.PCW_CAN0_CAN0_IO {<Select>}  \
+    CONFIG.PCW_CAN0_PERIPHERAL_ENABLE {1}  \
+    CONFIG.PCW_CAN0_CAN0_IO {MIO 14 .. 15}  \
     CONFIG.PCW_CAN0_GRP_CLK_ENABLE {0}  \
     CONFIG.PCW_CAN0_GRP_CLK_IO {<Select>}  \
     CONFIG.PCW_CAN1_PERIPHERAL_ENABLE {0}  \
@@ -661,11 +663,11 @@ return [dict create \
     CONFIG.PCW_MIO_13_SLEW {slow}  \
     CONFIG.PCW_MIO_14_PULLUP {enabled}  \
     CONFIG.PCW_MIO_14_IOTYPE {LVCMOS 3.3V}  \
-    CONFIG.PCW_MIO_14_DIRECTION {inout}  \
+    CONFIG.PCW_MIO_14_DIRECTION {in}  \
     CONFIG.PCW_MIO_14_SLEW {slow}  \
     CONFIG.PCW_MIO_15_PULLUP {enabled}  \
     CONFIG.PCW_MIO_15_IOTYPE {LVCMOS 3.3V}  \
-    CONFIG.PCW_MIO_15_DIRECTION {inout}  \
+    CONFIG.PCW_MIO_15_DIRECTION {out}  \
     CONFIG.PCW_MIO_15_SLEW {slow}  \
     CONFIG.PCW_MIO_16_PULLUP {enabled}  \
     CONFIG.PCW_MIO_16_IOTYPE {LVCMOS 1.8V}  \
@@ -791,9 +793,9 @@ return [dict create \
     CONFIG.PCW_MIO_46_IOTYPE {LVCMOS 1.8V}  \
     CONFIG.PCW_MIO_46_DIRECTION {in}  \
     CONFIG.PCW_MIO_46_SLEW {slow}  \
-    CONFIG.PCW_MIO_47_PULLUP {enabled}  \
+    CONFIG.PCW_MIO_47_PULLUP {disabled}  \
     CONFIG.PCW_MIO_47_IOTYPE {LVCMOS 1.8V}  \
-    CONFIG.PCW_MIO_47_DIRECTION {inout}  \
+    CONFIG.PCW_MIO_47_DIRECTION {in}  \
     CONFIG.PCW_MIO_47_SLEW {slow}  \
     CONFIG.PCW_MIO_48_PULLUP {enabled}  \
     CONFIG.PCW_MIO_48_IOTYPE {LVCMOS 1.8V}  \
@@ -820,8 +822,8 @@ return [dict create \
     CONFIG.PCW_MIO_53_DIRECTION {inout}  \
     CONFIG.PCW_MIO_53_SLEW {slow}  \
     CONFIG.PCW_UIPARAM_GENERATE_SUMMARY {NONE}  \
-    CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0}  \
-    CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#gpio[1]#gpio[2]#gpio[3]#gpio[4]#gpio[5]#gpio[6]#gpio[7]#gpio[8]#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#gpio[50]#gpio[51]#mdc#mdio}  \
+    CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#CAN 0#CAN 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0}  \
+    CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#gpio[1]#gpio[2]#gpio[3]#gpio[4]#gpio[5]#gpio[6]#gpio[7]#gpio[8]#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#rx#tx#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#wp#tx#rx#gpio[50]#gpio[51]#mdc#mdio}  \
     CONFIG.PCW_PS7_SI_REV {PRODUCTION}  \
     CONFIG.PCW_FPGA_FCLK0_ENABLE {1}  \
     CONFIG.PCW_FPGA_FCLK1_ENABLE {0}  \
@@ -870,6 +872,7 @@ return [dict create \
     CONFIG.PCW_SMC_CYCLE_T5 {NA}  \
     CONFIG.PCW_SMC_CYCLE_T6 {NA}  \
     CONFIG.PCW_PACKAGE_NAME {clg400}  \
+    CONFIG.PCW_PLL_BYPASSMODE_ENABLE {0}  \
 ]
 }
 
