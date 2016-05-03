@@ -152,12 +152,6 @@ proc create_root_design { parentCell } {
   set MEMS_INTn [ create_bd_port -dir I MEMS_INTn ]
   set TEMP_INTn [ create_bd_port -dir I TEMP_INTn ]
 
-  # Create instance: gnd_net, and set properties
-  set gnd_net [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 gnd_net ]
-  set_property -dict [ list \
-CONFIG.CONST_VAL {0} \
- ] $gnd_net
-
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
   set_property -dict [ list \
@@ -318,7 +312,7 @@ CONFIG.PCW_EN_EMIO_TTC1 {0} \
 CONFIG.PCW_EN_EMIO_UART0 {0} \
 CONFIG.PCW_EN_EMIO_UART1 {0} \
 CONFIG.PCW_EN_EMIO_WDT {0} \
-CONFIG.PCW_EN_EMIO_WP_SDIO0 {1} \
+CONFIG.PCW_EN_EMIO_WP_SDIO0 {0} \
 CONFIG.PCW_EN_EMIO_WP_SDIO1 {0} \
 CONFIG.PCW_EN_ENET0 {1} \
 CONFIG.PCW_EN_ENET1 {0} \
@@ -577,9 +571,9 @@ CONFIG.PCW_MIO_46_DIRECTION {in} \
 CONFIG.PCW_MIO_46_IOTYPE {LVCMOS 1.8V} \
 CONFIG.PCW_MIO_46_PULLUP {enabled} \
 CONFIG.PCW_MIO_46_SLEW {slow} \
-CONFIG.PCW_MIO_47_DIRECTION {inout} \
+CONFIG.PCW_MIO_47_DIRECTION {in} \
 CONFIG.PCW_MIO_47_IOTYPE {LVCMOS 1.8V} \
-CONFIG.PCW_MIO_47_PULLUP {enabled} \
+CONFIG.PCW_MIO_47_PULLUP {disabled} \
 CONFIG.PCW_MIO_47_SLEW {slow} \
 CONFIG.PCW_MIO_48_DIRECTION {out} \
 CONFIG.PCW_MIO_48_IOTYPE {LVCMOS 1.8V} \
@@ -630,8 +624,8 @@ CONFIG.PCW_MIO_9_IOTYPE {LVCMOS 3.3V} \
 CONFIG.PCW_MIO_9_PULLUP {enabled} \
 CONFIG.PCW_MIO_9_SLEW {slow} \
 CONFIG.PCW_MIO_PRIMITIVE {54} \
-CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#CAN 0#CAN 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0} \
-CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#gpio[1]#gpio[2]#gpio[3]#gpio[4]#gpio[5]#gpio[6]#gpio[7]#gpio[8]#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#rx#tx#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#gpio[50]#gpio[51]#mdc#mdio} \
+CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#CAN 0#CAN 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0} \
+CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#gpio[1]#gpio[2]#gpio[3]#gpio[4]#gpio[5]#gpio[6]#gpio[7]#gpio[8]#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#rx#tx#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#wp#tx#rx#gpio[50]#gpio[51]#mdc#mdio} \
 CONFIG.PCW_M_AXI_GP0_ENABLE_STATIC_REMAP {0} \
 CONFIG.PCW_M_AXI_GP0_FREQMHZ {50} \
 CONFIG.PCW_M_AXI_GP0_ID_WIDTH {12} \
@@ -760,7 +754,7 @@ CONFIG.PCW_SD0_GRP_CD_IO {MIO 46} \
 CONFIG.PCW_SD0_GRP_POW_ENABLE {0} \
 CONFIG.PCW_SD0_GRP_POW_IO {<Select>} \
 CONFIG.PCW_SD0_GRP_WP_ENABLE {1} \
-CONFIG.PCW_SD0_GRP_WP_IO {EMIO} \
+CONFIG.PCW_SD0_GRP_WP_IO {MIO 47} \
 CONFIG.PCW_SD0_PERIPHERAL_ENABLE {1} \
 CONFIG.PCW_SD0_SD0_IO {MIO 40 .. 45} \
 CONFIG.PCW_SD1_GRP_CD_ENABLE {0} \
@@ -1038,7 +1032,6 @@ CONFIG.PCW_WDT_WDT_IO {<Select>} \
   # Create port connections
   connect_bd_net -net MEMS_INTn_1 [get_bd_ports MEMS_INTn] [get_bd_pins xlconcat_0/In0]
   connect_bd_net -net TEMP_INTn_1 [get_bd_ports TEMP_INTn] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net gnd_net_dout [get_bd_pins gnd_net/dout] [get_bd_pins processing_system7_0/SDIO0_WP]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
 
@@ -1055,18 +1048,16 @@ preplace port TEMP_INTn -pg 1 -y 160 -defaultsOSRD
 preplace port GPIO_0 -pg 1 -y 50 -defaultsOSRD
 preplace port FIXED_IO -pg 1 -y 90 -defaultsOSRD
 preplace inst xlconcat_0 -pg 1 -lvl 1 -y 150 -defaultsOSRD
-preplace inst gnd_net -pg 1 -lvl 2 -y 330 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 2 -y 140 -defaultsOSRD
 preplace netloc processing_system7_0_DDR 1 2 1 NJ
 preplace netloc TEMP_INTn_1 1 0 1 NJ
 preplace netloc MEMS_INTn_1 1 0 1 NJ
 preplace netloc processing_system7_0_IIC_0 1 2 1 NJ
-preplace netloc gnd_net_dout 1 2 1 590
 preplace netloc xlconcat_0_dout 1 1 1 N
 preplace netloc processing_system7_0_FIXED_IO 1 2 1 NJ
 preplace netloc processing_system7_0_GPIO_0 1 2 1 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 1 2 200 280 580
-levelinfo -pg 1 0 110 390 610 -top 0 -bot 380
+preplace netloc processing_system7_0_FCLK_CLK0 1 1 2 200 20 580
+levelinfo -pg 1 0 110 390 640 -top 0 -bot 380
 ",
 }
 
